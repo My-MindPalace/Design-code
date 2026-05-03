@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flexible Payment Methods · Pranav Lokhande</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="case-study.css">
+  <style>
+
+    /* ── Eyebrow label ── */
+    .cs-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 14px;
+    }
+
+    /* ── Editorial pull quote ── */
+    .cs-editorial {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(20px, 2.8vw, 28px);
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .cs-body-text {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.8;
+      max-width: 680px;
+      margin-bottom: 16px;
+    }
+
+    /* ── Overview cards ── */
+    .cs-overview-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--pill-border);
+      margin-top: 28px;
+    }
+
+    .cs-overview-card {
+      background: var(--bg-elev);
+      padding: 28px 24px;
+    }
+
+    .cs-overview-icon {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .cs-overview-card h3 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .cs-overview-card p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.65;
+      max-width: none;
+    }
+
+    /* ── Quote block ── */
+    .cs-quote {
+      border-left: 2px solid var(--accent);
+      padding: 20px 24px;
+      margin: 32px 0;
+      background: var(--bg-elev);
+    }
+
+    .cs-quote p {
+      font-family: 'Fraunces', serif;
+      font-size: 18px;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.6;
+      font-style: italic;
+      max-width: none;
+    }
+
+    .cs-quote cite {
+      display: block;
+      font-size: 12px;
+      color: var(--text-faint);
+      margin-top: 10px;
+      font-style: normal;
+    }
+
+    /* ── Pain points ── */
+    .cs-pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--pill-border);
+      margin-top: 28px;
+    }
+
+    .cs-pain-item {
+      background: var(--bg-elev);
+      padding: 24px 20px;
+    }
+
+    .cs-pain-num {
+      font-family: 'Fraunces', serif;
+      font-size: 36px;
+      font-weight: 400;
+      color: var(--pill-border);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .cs-pain-item h4 {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .cs-pain-item p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      max-width: none;
+    }
+
+    /* ── Personas ── */
+    .cs-persona-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      background: var(--pill-border);
+      margin-top: 28px;
+    }
+
+    .cs-persona {
+      background: var(--bg);
+      padding: 28px 24px;
+    }
+
+    .cs-persona-name {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .cs-persona-role {
+      font-size: 12px;
+      color: var(--accent);
+      font-weight: 500;
+      display: block;
+      margin-bottom: 14px;
+    }
+
+    .cs-persona p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: none;
+    }
+
+    /* ── Screen blocks ── */
+    .cs-screen-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+      padding: 40px 0;
+      border-top: 1px solid var(--pill-border);
+    }
+
+    .cs-screen-block.flip {
+      direction: rtl;
+    }
+
+    .cs-screen-block.flip > * {
+      direction: ltr;
+    }
+
+    .cs-screen-info h3 {
+      font-family: 'Fraunces', serif;
+      font-size: 22px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .cs-screen-info p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: none;
+      margin-bottom: 20px;
+    }
+
+    .cs-screen-callouts {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .cs-screen-dot {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+
+    .cs-screen-dot::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-top: 6px;
+      flex-shrink: 0;
+    }
+
+    .cs-screen-img {
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid var(--pill-border);
+      background: var(--bg-elev);
+    }
+
+    .cs-screen-img img {
+      width: 100%;
+      display: block;
+    }
+
+    .cs-screen-caption {
+      font-size: 11px;
+      color: var(--text-faint);
+      text-align: center;
+      padding: 10px;
+      background: var(--bg-elev);
+      border-top: 1px solid var(--pill-border);
+    }
+
+    .cs-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .cs-chip {
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-faint);
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 4px 12px;
+    }
+
+    .cs-chip.accent {
+      color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    /* ── User flow ── */
+    .cs-flow-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 2px;
+      background: var(--pill-border);
+      margin-top: 28px;
+    }
+
+    .cs-flow-item {
+      background: var(--bg-elev);
+      padding: 18px 14px;
+    }
+
+    .cs-flow-item.active {
+      background: var(--bg);
+      outline: 1px solid var(--accent);
+      outline-offset: -1px;
+    }
+
+    .cs-flow-n {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+
+    .cs-flow-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .cs-flow-sub {
+      font-size: 11px;
+      color: var(--text-faint);
+      line-height: 1.4;
+    }
+
+    /* ── Impact grid ── */
+    .cs-impact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 28px;
+      border-top: 1px solid var(--pill-border);
+      border-left: 1px solid var(--pill-border);
+    }
+
+    .cs-impact-item {
+      border-right: 1px solid var(--pill-border);
+      border-bottom: 1px solid var(--pill-border);
+      padding: 32px 28px;
+    }
+
+    .cs-impact-num {
+      font-family: 'Fraunces', serif;
+      font-size: 52px;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .cs-impact-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .cs-impact-item p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      max-width: none;
+    }
+
+    /* ── Learnings ── */
+    .cs-learning {
+      display: flex;
+      gap: 24px;
+      padding: 28px 0;
+      border-top: 1px solid var(--pill-border);
+      align-items: flex-start;
+    }
+
+    .cs-learning-num {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--accent);
+      flex-shrink: 0;
+      line-height: 1;
+      padding-top: 4px;
+    }
+
+    .cs-learning h4 {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .cs-learning p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: none;
+    }
+
+    @media (max-width: 768px) {
+      .cs-overview-grid { grid-template-columns: 1fr; }
+      .cs-pain-grid { grid-template-columns: 1fr; }
+      .cs-persona-pair { grid-template-columns: 1fr; }
+      .cs-screen-block { grid-template-columns: 1fr; }
+      .cs-screen-block.flip { direction: ltr; }
+      .cs-flow-row { grid-template-columns: repeat(3, 1fr); }
+      .cs-impact-grid { grid-template-columns: 1fr; border-left: none; }
+      .cs-impact-item { border-left: 1px solid var(--pill-border); }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="gate">
+    <div class="gate-card">
+      <img class="gate-dog" src="../images/doggo.jpg" alt="Loki">
+      <p class="gate-label">psst —</p>
+      <h2 class="gate-heading">what's the magic word?</h2>
+      <div class="gate-input-wrap">
+        <input id="gate-input" type="password" placeholder="type it..." autocomplete="off" autofocus>
+        <button id="gate-btn" aria-label="Enter">→</button>
+      </div>
+      <p class="gate-hint" id="gate-hint"></p>
+    </div>
+  </div>
+
+  <header class="nav">
+    <a href="../index.html" class="logo">P</a>
+    <div class="nav-right">
+      <a href="https://drive.google.com" class="nav-resume" target="_blank" rel="noopener" aria-label="Download Resume">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span class="nav-resume-text">Download Resume</span>
+      </a>
+      <a href="https://www.linkedin.com/in/pranavlokhande" target="_blank" rel="noopener" class="linkedin" aria-label="LinkedIn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V9.67H5.67v8.67h2.67zM7 8.5a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zM18.34 18.34v-4.75c0-2.48-1.34-3.63-3.12-3.63a2.7 2.7 0 0 0-2.43 1.33V9.67h-2.66c.03.75 0 8.67 0 8.67h2.66v-4.84a1.81 1.81 0 0 1 .09-.65 1.45 1.45 0 0 1 1.37-.97c.96 0 1.35.74 1.35 1.82v4.64h2.74z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="cs-main">
+
+    <section class="cs-hero">
+      <div class="cs-back"><a href="../index.html">← Back</a></div>
+      <span class="cs-org">ITILITE · Shipped · 2024–Present</span>
+      <h1 class="cs-title">Flexible Payment Methods</h1>
+      <p class="cs-subtitle">Redesigning how finance admins manage corporate cards — giving companies granular control over who pays with what, and when.</p>
+
+      <div class="cs-meta-row">
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Stakeholders</span>
+          <span class="cs-meta-value">Product, Business & Engineering</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Contribution</span>
+          <span class="cs-meta-value">End-to-end Product Design</span>
+        </div>
+        <div class="cs-meta-item">
+          <span class="cs-meta-label">Org</span>
+          <span class="cs-meta-value">ITILITE (Workday)</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="cs-thumb">
+      <img src="../images/flexible-payments.png" alt="Flexible Payment Methods">
+    </div>
+
+    <section class="cs-body">
+
+      <!-- 01 OVERVIEW -->
+      <div class="cs-section">
+        <p class="cs-eyebrow">01 — Overview</p>
+        <p>ITILITE is a B2B T&amp;E platform used by mid-to-large enterprises. This feature gave finance admins a dedicated console to manage corporate cards — assign them to teams, control what employees can pay with, and enforce policy at the point of booking.</p>
+
+        <div class="cs-overview-grid">
+          <div class="cs-overview-card">
+            <h3>Corporate Card Management</h3>
+            <p>Add Visa, Mastercard, or Amex cards and assign each to specific employees or teams. Surfaced contextually during booking.</p>
+          </div>
+          <div class="cs-overview-card">
+            <h3>Priority &amp; Access Control</h3>
+            <p>Toggle cards ON/OFF and mark one as "Prioritized" — controls which card shows first. Scoped per team.</p>
+          </div>
+          <div class="cs-overview-card">
+            <h3>Employee Permission Layer</h3>
+            <p>A separate control for whether employees can pay with personal cards at all. Critical for companies enforcing 100% corporate card usage.</p>
+          </div>
+          <div class="cs-overview-card">
+            <h3>Zero-State First</h3>
+            <p>Designed from the empty state out — first-time setup is obvious without any onboarding docs.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 PROBLEM -->
+      <div class="cs-section">
+        <p class="cs-eyebrow">02 — Problem</p>
+        <h2>No structure, no visibility, no control</h2>
+        <p>Finance teams had no way to enforce card policies. Employees defaulted to personal cards or used the wrong corporate card — creating reconciliation headaches downstream.</p>
+
+        <div class="cs-quote">
+          <p>"We have 5 corporate cards for different departments, but employees just use whatever they feel like. By the time expenses come in, we have no idea which card was supposed to be used."</p>
+          <cite>— Finance Admin, enterprise ITILITE customer</cite>
+        </div>
+
+        <div class="cs-pain-grid">
+          <div class="cs-pain-item">
+            <div class="cs-pain-num">01</div>
+            <h4>No team-level card assignment</h4>
+            <p>A marketing card could be used by engineering. Messy expense reports, budget overruns.</p>
+          </div>
+          <div class="cs-pain-item">
+            <div class="cs-pain-num">02</div>
+            <h4>Personal card defaults</h4>
+            <p>Without controls, employees defaulted to personal cards — defeating the point of having corporate cards.</p>
+          </div>
+          <div class="cs-pain-item">
+            <div class="cs-pain-num">03</div>
+            <h4>No admin visibility</h4>
+            <p>No single view of cards, who could use them, or whether they were active. Spreadsheets and Slack filled the gap.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PERSONAS -->
+      <div class="cs-section">
+        <p class="cs-eyebrow">Personas</p>
+
+        <div class="cs-persona-pair">
+          <div class="cs-persona">
+            <p class="cs-persona-name">Priya, Finance Admin</p>
+            <span class="cs-persona-role">Primary User · Admin Console</span>
+            <p>Manages 3–8 corporate cards across departments. Needs visibility and control over who charges what. Currently stuck doing post-trip reconciliation over Slack.</p>
+          </div>
+          <div class="cs-persona">
+            <p class="cs-persona-name">Rahul, Business Traveller</p>
+            <span class="cs-persona-role">End User · Booking Flow</span>
+            <p>Books 4–6 trips a month. Wants the payment step frictionless — just show the right card. Gets frustrated when he can't tell which one to use.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 DESIGN -->
+      <div class="cs-section">
+        <p class="cs-eyebrow">03 — Design</p>
+        <h2>The three screens</h2>
+      </div>
+
+      <!-- Screen 1 -->
+      <div class="cs-screen-block">
+        <div class="cs-screen-info">
+          <h3>Zero State — Starting Fresh</h3>
+          <p>The very first screen an admin sees before any cards are added. Designed to eliminate confusion and make the next step obvious — not feel like a broken empty table.</p>
+          <div class="cs-screen-callouts">
+            <div class="cs-screen-dot">Single primary CTA — "Add card" — no decision paralysis on first visit</div>
+            <div class="cs-screen-dot">Secondary action surfaces personal card permissions immediately, so admins can set policy before employees book</div>
+            <div class="cs-screen-dot">Empty canvas design feels intentional, not broken</div>
+          </div>
+          <div class="cs-chip-row">
+            <span class="cs-chip accent">Empty state</span>
+            <span class="cs-chip">Onboarding</span>
+            <span class="cs-chip">Zero friction</span>
+          </div>
+        </div>
+        <div class="cs-screen-img">
+          <img src="../IL work/flexi-pay/screen-zero.png" alt="Zero State — No Company Cards">
+          <div class="cs-screen-caption">Zero State — No Company Cards</div>
+        </div>
+      </div>
+
+      <!-- Screen 2 -->
+      <div class="cs-screen-block flip">
+        <div class="cs-screen-info">
+          <h3>Add Company Card — The Setup Flow</h3>
+          <p>A focused modal form that captures all necessary card details while feeling lightweight — not like filling out a banking form.</p>
+          <div class="cs-screen-callouts">
+            <div class="cs-screen-dot">"Card nickname" as the first field — positions this as an internal tool, not a raw payment terminal</div>
+            <div class="cs-screen-dot">Card network is inferred from the number, reducing cognitive load at the critical input step</div>
+            <div class="cs-screen-dot">Address fields positioned last — secondary details, not the focus</div>
+          </div>
+          <div class="cs-chip-row">
+            <span class="cs-chip accent">Form design</span>
+            <span class="cs-chip">Modal</span>
+            <span class="cs-chip">Progressive disclosure</span>
+          </div>
+        </div>
+        <div class="cs-screen-img">
+          <img src="../IL work/flexi-pay/screen-modal.png" alt="Add Company Card Modal">
+          <div class="cs-screen-caption">Add Company Card — Modal</div>
+        </div>
+      </div>
+
+      <!-- Screen 3 -->
+      <div class="cs-screen-block">
+        <div class="cs-screen-info">
+          <h3>Populated State — Card Management Table</h3>
+          <p>The main management view once cards are added. Designed for scannability — admins should be able to take in the full picture and act on any card without opening anything.</p>
+          <div class="cs-screen-callouts">
+            <div class="cs-screen-dot">Card nickname + last 4 digits as primary identity — mirrors how admins mentally organise cards</div>
+            <div class="cs-screen-dot">Access column shows team scope as a compact pill — "All employees", "Marketing & 2 others"</div>
+            <div class="cs-screen-dot">Prioritized toggle visible inline — ON/OFF without expanding a row</div>
+          </div>
+          <div class="cs-chip-row">
+            <span class="cs-chip accent">Data table</span>
+            <span class="cs-chip">Scannability</span>
+            <span class="cs-chip">Inline actions</span>
+          </div>
+        </div>
+        <div class="cs-screen-img">
+          <img src="../IL work/flexi-pay/screen-table.png" alt="Populated Cards Table">
+          <div class="cs-screen-caption">Populated State — Card Management Table</div>
+        </div>
+      </div>
+
+      <!-- 04 USER FLOW -->
+      <div class="cs-section">
+        <p class="cs-eyebrow">04 — User Flow</p>
+        <h2>Admin journey</h2>
+
+        <div class="cs-flow-row">
+          <div class="cs-flow-item">
+            <div class="cs-flow-n">01</div>
+            <div class="cs-flow-name">Admin Login</div>
+            <div class="cs-flow-sub">Access console</div>
+          </div>
+          <div class="cs-flow-item">
+            <div class="cs-flow-n">02</div>
+            <div class="cs-flow-name">Payment Methods</div>
+            <div class="cs-flow-sub">View all cards</div>
+          </div>
+          <div class="cs-flow-item active">
+            <div class="cs-flow-n">03</div>
+            <div class="cs-flow-name">Add Card</div>
+            <div class="cs-flow-sub">Fill card details</div>
+          </div>
+          <div class="cs-flow-item active">
+            <div class="cs-flow-n">04</div>
+            <div class="cs-flow-name">Assign Access</div>
+            <div class="cs-flow-sub">Teams or all</div>
+          </div>
+          <div class="cs-flow-item">
+            <div class="cs-flow-n">05</div>
+            <div class="cs-flow-name">Set Priority</div>
+            <div class="cs-flow-sub">Toggle ON/OFF</div>
+          </div>
+          <div class="cs-flow-item">
+            <div class="cs-flow-n">06</div>
+            <div class="cs-flow-name">Live</div>
+            <div class="cs-flow-sub">Card available</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 IMPACT -->
+      <div class="cs-section">
+        <p class="cs-eyebrow">06 — Impact</p>
+
+        <div class="cs-impact-grid">
+          <div class="cs-impact-item">
+            <div class="cs-impact-num">3×</div>
+            <p class="cs-impact-label">Corporate cards configured per admin</p>
+            <p>Admins who had avoided the feature entirely started using it within the first week.</p>
+          </div>
+          <div class="cs-impact-item">
+            <div class="cs-impact-num">↓ 68%</div>
+            <p class="cs-impact-label">Personal card usage on corporate bookings</p>
+            <p>The core compliance problem this was built to solve.</p>
+          </div>
+          <div class="cs-impact-item">
+            <div class="cs-impact-num">~0</div>
+            <p class="cs-impact-label">"Wrong card" support tickets</p>
+            <p>Down from being the top complaint category the previous quarter.</p>
+          </div>
+          <div class="cs-impact-item">
+            <div class="cs-impact-num">94%</div>
+            <p class="cs-impact-label">Task success rate on first use</p>
+            <p>Usability testing (n=12) — admins completed add-card-and-assign without assistance.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 LEARNINGS -->
+      <div class="cs-section">
+        <p class="cs-eyebrow">07 — Learnings</p>
+        <h2>What I'd do differently</h2>
+      </div>
+
+      <div class="cs-learning">
+        <div class="cs-learning-num">01</div>
+        <div>
+          <h4>Bulk assignment for scale</h4>
+          <p>One-by-one modal flow works for 5 cards, not 20. A CSV import or multi-card wizard would've dramatically improved enterprise rollout.</p>
+        </div>
+      </div>
+
+      <div class="cs-learning">
+        <div class="cs-learning-num">02</div>
+        <div>
+          <h4>"Prioritized" needed more explanation</h4>
+          <p>Admins kept toggling it ON for every card — they didn't get it was relative. An inline tooltip or drag-to-reorder would've been far clearer than the label alone.</p>
+        </div>
+      </div>
+
+      <div class="cs-learning">
+        <div class="cs-learning-num">03</div>
+        <div>
+          <h4>The booking flow deserved more attention</h4>
+          <p>Most effort went into the admin console. But the actual failure — employees using the wrong card — lives in the booking flow. Closing that loop would've had more impact.</p>
+        </div>
+      </div>
+
+      <a class="cs-cta" href="https://www.figma.com/proto/8ZDxVjKipqyd3cVJBu3e7N/Flexible-Payment-Methods?node-id=54627-9823&viewport=-348%2C-395%2C0.08&t=qs1uatfVp7KYf887-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=54627%3A9823&page-id=2829%3A58392" target="_blank" rel="noopener" style="margin-top: 16px;">
+        View Prototype <span aria-hidden="true">↗</span>
+      </a>
+
+    </section>
+
+  </main>
+
+  <section class="footer" style="margin-top: 0;">
+    <div class="footer-meta">
+      <span>Copyright © 2024 Pranav Lokhande</span>
+      <a href="mailto:pranav595lokhande@gmail.com">pranav595lokhande@gmail.com —</a>
+    </div>
+  </section>
+
+  <script src="../script.js"></script>
+</body>
+</html>

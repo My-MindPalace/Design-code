@@ -1,0 +1,154 @@
+.cs-main {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 120px 48px 80px;
+}
+
+.cs-back a {
+  font-size: 13px;
+  color: var(--text-faint);
+  transition: color 0.2s;
+}
+.cs-back a:hover { color: var(--text); }
+.cs-back { margin-bottom: 40px; }
+
+.cs-org {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.cs-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 400;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+}
+
+.cs-subtitle {
+  font-size: 18px;
+  color: var(--text-dim);
+  line-height: 1.65;
+  max-width: 680px;
+  margin-bottom: 48px;
+}
+
+.cs-meta-row {
+  display: flex;
+  gap: 48px;
+  padding: 28px 0;
+  border-top: 1px solid var(--pill-border);
+  border-bottom: 1px solid var(--pill-border);
+}
+
+.cs-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.cs-meta-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-faint);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.cs-meta-value {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.cs-thumb {
+  margin: 56px 0;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--bg-elev);
+}
+
+.cs-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.cs-body {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+}
+
+.cs-section h2 {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.cs-section p {
+  font-size: 16px;
+  color: var(--text-dim);
+  line-height: 1.75;
+  max-width: 680px;
+}
+
+.cs-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--pill-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.cs-metric {
+  background: var(--bg-elev);
+  padding: 28px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cs-metric-num {
+  font-family: 'Fraunces', serif;
+  font-size: 28px;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: -0.02em;
+}
+
+.cs-metric-label {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.cs-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 28px;
+  background: #F2F2F4;
+  color: #111;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  width: fit-content;
+  transition: transform 0.2s, background 0.2s;
+}
+.cs-cta:hover { transform: translateY(-2px); background: #fff; }
+
+@media (max-width: 768px) {
+  .cs-main { padding: 100px 24px 60px; }
+  .cs-meta-row { flex-direction: column; gap: 24px; }
+  .cs-metrics { grid-template-columns: 1fr; }
+}

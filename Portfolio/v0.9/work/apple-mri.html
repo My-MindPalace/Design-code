@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flipkart Diagnostic + Apple MRI · Pranav Lokhande</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="case-study.css">
+  <style>
+    .cs-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+    .cs-chip {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-faint);
+      border: 1px solid var(--pill-border);
+      border-radius: 999px;
+      padding: 5px 14px;
+    }
+
+    .cs-eyebrow {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 14px;
+    }
+
+    .cs-editorial {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(20px, 2.8vw, 28px);
+      font-weight: 400;
+      line-height: 1.4;
+      color: var(--text);
+      letter-spacing: -0.01em;
+      margin-bottom: 20px;
+    }
+
+    .cs-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .cs-two-col p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      max-width: none;
+    }
+
+    /* Users */
+    .cs-user-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--pill-border);
+      margin-top: 28px;
+    }
+    .cs-user {
+      background: var(--bg);
+      padding: 32px;
+    }
+    .cs-user-name {
+      font-family: 'Fraunces', serif;
+      font-size: 20px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .cs-user-role {
+      font-size: 12px;
+      color: var(--text-faint);
+      display: block;
+      margin-bottom: 16px;
+    }
+    .cs-user p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: none;
+    }
+    .cs-user-voice {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid var(--pill-border);
+      font-size: 13px;
+      color: var(--text-faint);
+      font-style: italic;
+      line-height: 1.5;
+    }
+
+    /* Flow */
+    .cs-flow-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 1px;
+      background: var(--pill-border);
+      margin-top: 28px;
+    }
+    .cs-flow-item {
+      background: var(--bg-elev);
+      padding: 18px 14px;
+    }
+    .cs-flow-n {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 6px;
+    }
+    .cs-flow-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .cs-flow-sub {
+      font-size: 11px;
+      color: var(--text-faint);
+      line-height: 1.4;
+    }
+
+    /* Phases */
+    .cs-phase-divider {
+      border: none;
+      border-top: 1px solid var(--pill-border);
+      margin: 64px 0;
+    }
+    .cs-phase-n {
+      font-family: 'Fraunces', serif;
+      font-size: 80px;
+      font-weight: 400;
+      color: var(--pill-border);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      margin-bottom: -4px;
+    }
+    .cs-phase-title {
+      font-family: 'Fraunces', serif;
+      font-size: 28px;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .cs-phase-badge {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-faint);
+      border: 1px solid var(--pill-border);
+      padding: 3px 12px;
+      border-radius: 999px;
+    }
+    .cs-body-text {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.8;
+      max-width: 680px;
+      margin-bottom: 16px;
+    }
+    .cs-callout {
+      background: var(--bg-elev);
+      border-left: 2px solid var(--accent);
+      padding: 18px 20px;
+      margin-top: 24px;
+    }
+    .cs-callout-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .cs-callout p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.65;
+      max-width: none;
+    }
+
+    .cs-box-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--pill-border);
+      margin-top: 24px;
+    }
+    .cs-box {
+      background: var(--bg-elev);
+      padding: 22px 20px;
+    }
+    .cs-box-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-faint);
+      margin-bottom: 8px;
+    }
+    .cs-box p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.65;
+      max-width: none;
+    }
+    .cs-box p strong { color: var(--text); }
+
+    /* Pull stat */
+    .cs-pull {
+      border-top: 1px solid var(--pill-border);
+      border-bottom: 1px solid var(--pill-border);
+      padding: 40px 0;
+      margin: 32px 0;
+    }
+    .cs-pull-num {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(64px, 9vw, 104px);
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+    .cs-pull-desc {
+      font-size: 15px;
+      color: var(--text-dim);
+      margin-top: 10px;
+      max-width: 480px;
+    }
+
+    /* Impact */
+    .cs-impact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-top: 40px;
+      border-top: 1px solid var(--pill-border);
+      border-left: 1px solid var(--pill-border);
+    }
+    .cs-impact-item {
+      border-right: 1px solid var(--pill-border);
+      border-bottom: 1px solid var(--pill-border);
+      padding: 32px 28px;
+    }
+    .cs-impact-num {
+      font-family: 'Fraunces', serif;
+      font-size: 52px;
+      font-weight: 400;
+      color: var(--accent);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+    .cs-impact-label {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+    .cs-impact-item p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      max-width: none;
+    }
+
+    /* Close */
+    .cs-close {
+      padding: 64px 0 80px;
+    }
+    .cs-close blockquote {
+      font-family: 'Fraunces', serif;
+      font-size: clamp(18px, 2.5vw, 26px);
+      font-weight: 400;
+      color: var(--text-dim);
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      border-left: 2px solid var(--text-faint);
+      padding-left: 28px;
+      margin: 0 0 14px;
+    }
+    .cs-close cite {
+      font-style: normal;
+      font-size: 12px;
+      color: var(--text-faint);
+      padding-left: 28px;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .cs-two-col { grid-template-columns: 1fr; gap: 24px; }
+      .cs-user-pair { grid-template-columns: 1fr; }
+      .cs-flow-row { grid-template-columns: repeat(3, 1fr); }
+      .cs-box-pair { grid-template-columns: 1fr; }
+      .cs-impact-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="gate">
+    <div class="gate-card">
+      <img class="gate-dog" src="../images/doggo.jpg" alt="Loki">
+      <p class="gate-label">psst —</p>
+      <h2 class="gate-heading">what's the magic word?</h2>
+      <div class="gate-input-wrap">
+        <input id="gate-input" type="password" placeholder="type it..." autocomplete="off" autofocus>
+        <button id="gate-btn" aria-label="Enter">→</button>
+      </div>
+      <p class="gate-hint" id="gate-hint"></p>
+    </div>
+  </div>
+
+  <header class="nav">
+    <a href="../index.html" class="logo">P</a>
+    <div class="nav-right">
+      <a href="https://drive.google.com" class="nav-resume" target="_blank" rel="noopener" aria-label="Download Resume">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span class="nav-resume-text">Download Resume</span>
+      </a>
+      <a href="https://www.linkedin.com/in/pranavlokhande" target="_blank" rel="noopener" class="linkedin" aria-label="LinkedIn">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 18.34V9.67H5.67v8.67h2.67zM7 8.5a1.55 1.55 0 1 0 0-3.1 1.55 1.55 0 0 0 0 3.1zM18.34 18.34v-4.75c0-2.48-1.34-3.63-3.12-3.63a2.7 2.7 0 0 0-2.43 1.33V9.67h-2.66c.03.75 0 8.67 0 8.67h2.66v-4.84a1.81 1.81 0 0 1 .09-.65 1.45 1.45 0 0 1 1.37-.97c.96 0 1.35.74 1.35 1.82v4.64h2.74z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <main class="cs-main">
+
+    <div class="cs-back"><a href="../index.html">← Back</a></div>
+
+    <div class="cs-chips">
+      <span class="cs-chip">Flipkart</span>
+      <span class="cs-chip">Shipped · 2024</span>
+      <span class="cs-chip">Seller Experience</span>
+      <span class="cs-chip">Device Diagnostics</span>
+    </div>
+
+    <h1 class="cs-title">Flipkart Diagnostic<br>+ Apple MRI</h1>
+    <p class="cs-subtitle">Refurbished devices on Flipkart had a trust problem. Apple had the fix. The challenge was making it work for a store owner in Patna who's never heard of MRI.</p>
+
+    <div class="cs-meta-row">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Role</span>
+        <span class="cs-meta-value">Lead UX Designer</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Platform</span>
+        <span class="cs-meta-value">Flipkart Seller App (iOS + Android)</span>
+      </div>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Launched</span>
+        <span class="cs-meta-value">Q3 2024 · Delhi, Mumbai, Bengaluru</span>
+      </div>
+    </div>
+
+    <div class="cs-thumb">
+      <img src="../images/doorstep-exchange.png" alt="Flipkart Diagnostic + Apple MRI">
+    </div>
+
+    <section class="cs-body">
+
+      <div class="cs-section">
+        <p class="cs-eyebrow">The problem</p>
+        <p class="cs-editorial">When a buyer lands on a refurbished iPhone listing, they're reading a paragraph someone typed. No standard. No verification.</p>
+        <p>Condition descriptions ranged from meticulous to wildly optimistic — and buyers knew it. Return rates were high, disputes were frequent, and the refurbished category had a credibility ceiling it couldn't break through. The business wanted to grow refurbished. Trust was the blocker.</p>
+      </div>
+
+      <div class="cs-section">
+        <p class="cs-eyebrow">What we built</p>
+        <div class="cs-two-col">
+          <div>
+            <p>Apple MRI is Apple's own hardware diagnostic — it runs a battery of tests on iPhones and iPads and returns a standardised condition report. Flipkart got access. Our job was to integrate it into the seller listing flow in a way that non-technical sellers and third-party surveyors could actually use.</p>
+          </div>
+          <div>
+            <p>We also brought in <strong>Yaantra</strong> as a parallel diagnostic for Android devices — building both tools into a unified flow so sellers have the same verified listing experience regardless of what device they're selling.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <p class="cs-eyebrow">Two very different users, one flow</p>
+        <div class="cs-user-pair">
+          <div class="cs-user">
+            <p class="cs-user-name">The Refurbished Seller</p>
+            <span class="cs-user-role">Small shop owner · 30–50 devices/month</span>
+            <p>Lists devices on Flipkart daily. Not technically trained. Doesn't know what IMEI stands for. Needs the whole diagnostic done — ideally while they're at the counter handling another sale.</p>
+            <p class="cs-user-voice">"Just tell me what to press and when it's done."</p>
+          </div>
+          <div class="cs-user">
+            <p class="cs-user-name">The Surveyor</p>
+            <span class="cs-user-role">Certified field technician</span>
+            <p>Travels to sellers to run the actual diagnostic. Semi-technical. Juggles multiple appointments. Has seen every edge case — wrong device, wrong iOS version, dead battery, dual SIM confusion.</p>
+            <p class="cs-user-voice">"I need to know exactly what to do when something breaks mid-diagnostic."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <p class="cs-eyebrow">The flow</p>
+        <p>Six steps — most handled by the surveyor, initiated by the seller.</p>
+        <div class="cs-flow-row">
+          <div class="cs-flow-item">
+            <div class="cs-flow-n">01</div>
+            <div class="cs-flow-name">List device</div>
+            <div class="cs-flow-sub">Seller creates the listing</div>
+          </div>
+          <div class="cs-flow-item">
+            <div class="cs-flow-n">02</div>
+            <div class="cs-flow-name">Assign surveyor</div>
+            <div class="cs-flow-sub">Pick from nearby pool</div>
+          </div>
+          <div class="cs-flow-item">
+            <div class="cs-flow-n">03</div>
+            <div class="cs-flow-name">IMEI check</div>
+            <div class="cs-flow-sub">Confirm it's the right device</div>
+          </div>
+          <div class="cs-flow-item">
+            <div class="cs-flow-n">04</div>
+            <div class="cs-flow-name">Run diagnostic</div>
+            <div class="cs-flow-sub">Apple MRI or Yaantra</div>
+          </div>
+          <div class="cs-flow-item">
+            <div class="cs-flow-n">05</div>
+            <div class="cs-flow-name">Review results</div>
+            <div class="cs-flow-sub">Condition mapped + shareable</div>
+          </div>
+          <div class="cs-flow-item">
+            <div class="cs-flow-n">06</div>
+            <div class="cs-flow-name">Publish</div>
+            <div class="cs-flow-sub">Verified badge on listing</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cs-section">
+        <p class="cs-eyebrow">Design decisions</p>
+        <p>Six phases. Each one had its own set of problems.</p>
+      </div>
+
+      <hr class="cs-phase-divider">
+
+      <div>
+        <div class="cs-phase-n">01</div>
+        <h2 class="cs-phase-title">Surveyor selection <span class="cs-phase-badge">Seller</span></h2>
+        <p class="cs-body-text">Sellers had to pick someone from a list of certified surveyors — but the list had no context. No availability, no distance, no rating. They were picking names blind, scheduling back and forth over WhatsApp, and diagnostic sessions were frequently falling through.</p>
+        <p class="cs-body-text">We surfaced availability windows, distance, and a rating directly on the selection card. Added a "nearest available" default that could be overridden. Selection time dropped from an average 4 minutes to under 60 seconds.</p>
+        <div class="cs-callout">
+          <p class="cs-callout-label">Tier 2 problem</p>
+          <p>Spotty connectivity meant the surveyor list sometimes wouldn't load. We pre-fetch and cache surveyor data so the screen works on a weak connection — no spinner, no dead end.</p>
+        </div>
+      </div>
+
+      <hr class="cs-phase-divider">
+
+      <div>
+        <div class="cs-phase-n">02</div>
+        <h2 class="cs-phase-title">IMEI validation <span class="cs-phase-badge">Surveyor</span></h2>
+        <p class="cs-body-text">We discovered sellers were sometimes running diagnostics on a different device than the one listed. The report ended up attached to the wrong listing. Buyers were receiving devices that didn't match their verified report.</p>
+        <p class="cs-body-text">Camera scan at the start of every session. IMEI cross-referenced against the listing in real time. If it doesn't match, you can't proceed.</p>
+        <div class="cs-box-pair">
+          <div class="cs-box">
+            <p class="cs-box-label">Manual fallback</p>
+            <p>Worn IMEI labels are common in second-hand devices. Manual entry reduced drop-off at this step by <strong>18%</strong>.</p>
+          </div>
+          <div class="cs-box">
+            <p class="cs-box-label">Dual-SIM edge case</p>
+            <p>Dual-SIM phones have two IMEIs. We prompt the surveyor to select the primary slot — something we missed entirely in V1.</p>
+          </div>
+        </div>
+      </div>
+
+      <hr class="cs-phase-divider">
+
+      <div>
+        <div class="cs-phase-n">03</div>
+        <h2 class="cs-phase-title">Apple MRI installation <span class="cs-phase-badge">Surveyor</span></h2>
+        <p class="cs-body-text">Apple MRI doesn't live on the device. It's installed each time via a provisioning profile — a 6-step process involving Settings, Safari, and a trust prompt. Surveyors were getting stuck at step 3 or 4 with no guidance and no one to call.</p>
+        <p class="cs-body-text">We built a screen-by-screen guide inside the Flipkart app that mirrors what's happening on the device being tested. Progress indicator, estimated time remaining. The surveyor always knows where they are.</p>
+        <div class="cs-callout">
+          <p class="cs-callout-label">Biggest support ticket, fixed</p>
+          <p>iOS version incompatibility was the #1 reason diagnostics failed. We now check the device's iOS version before starting — and surface a clear, actionable message if it's unsupported, rather than letting the install silently fail three steps in.</p>
+        </div>
+      </div>
+
+      <hr class="cs-phase-divider">
+
+      <div>
+        <div class="cs-phase-n">04</div>
+        <h2 class="cs-phase-title">Reading the results <span class="cs-phase-badge">Both</span></h2>
+        <p class="cs-body-text">Apple MRI returns a detailed technical report — battery cycle count, sensor pass/fail states, component health percentages. Valuable data. Completely unreadable to the average seller.</p>
+        <p class="cs-body-text">We mapped every MRI output to Flipkart's existing condition taxonomy: Like New / Good / Fair / Poor. Sellers see a plain-language summary alongside the raw data. Each failing component gets a brief explanation in English, not tech speak.</p>
+        <div class="cs-callout">
+          <p class="cs-callout-label">The unexpected winner</p>
+          <p>We added a one-tap "Share to WhatsApp" export almost as an afterthought. It became the most-used feature on the results screen. Sellers were sending the report to buyers before the device even shipped.</p>
+        </div>
+      </div>
+
+      <hr class="cs-phase-divider">
+
+      <div>
+        <div class="cs-phase-n">05</div>
+        <h2 class="cs-phase-title">Yaantra <span class="cs-phase-badge">Android / Fallback</span></h2>
+        <p class="cs-body-text">Apple MRI only runs on Apple devices. A significant chunk of Flipkart's refurbished listings are Android. We integrated Yaantra — a third-party diagnostic tool — using the same guided install flow, the same results mapping, and the same report format as Apple MRI. Sellers see an identical experience regardless of platform. The backend is different. The seller doesn't need to know that.</p>
+      </div>
+
+      <hr class="cs-phase-divider">
+
+      <div>
+        <div class="cs-phase-n">06</div>
+        <h2 class="cs-phase-title">Getting sellers to actually opt in <span class="cs-phase-badge">Discovery</span></h2>
+        <p class="cs-body-text">The diagnostic was optional. When it was buried at step 7 of the listing flow, barely anyone opted in. The feature existed but it was invisible. We ran an A/B test across three entry point variants: inline prompt mid-flow, full interstitial, and a bottom sheet at the very start of listing creation.</p>
+
+        <div class="cs-pull">
+          <div class="cs-pull-num">+31%</div>
+          <p class="cs-pull-desc">opt-in lift — bottom sheet at listing start vs. mid-flow inline prompt</p>
+        </div>
+
+        <p class="cs-body-text">Framing mattered too. "Add a Verified badge to your listing" outperformed "Run a device diagnostic" by a significant margin. Same action, completely different story.</p>
+      </div>
+
+      <hr class="cs-phase-divider">
+
+      <div class="cs-section">
+        <p class="cs-eyebrow">90 days post-launch</p>
+        <p class="cs-editorial">12,000 devices diagnosed. Returns dropped. Sellers stopped losing disputes.</p>
+        <div class="cs-impact-grid">
+          <div class="cs-impact-item">
+            <div class="cs-impact-num">↓ 23%</div>
+            <p class="cs-impact-label">Return rate on verified listings</p>
+            <p>Buyers who purchased a diagnostics-verified device returned it less — because what they received matched what was promised.</p>
+          </div>
+          <div class="cs-impact-item">
+            <div class="cs-impact-num">4.2×</div>
+            <p class="cs-impact-label">Conversion vs. unverified listings</p>
+            <p>Verified listings converted at more than four times the rate of unverified ones in the same category.</p>
+          </div>
+          <div class="cs-impact-item">
+            <div class="cs-impact-num">↓ 40%</div>
+            <p class="cs-impact-label">Condition-related support tickets</p>
+            <p>When buyers have a machine-generated report, there's a lot less to argue about.</p>
+          </div>
+          <div class="cs-impact-item">
+            <div class="cs-impact-num">↑ 18%</div>
+            <p class="cs-impact-label">Seller NPS</p>
+            <p>Sellers using diagnostics reported fewer disputes and faster resolution when issues did arise.</p>
+          </div>
+        </div>
+      </div>
+
+      <a class="cs-cta" href="https://drive.google.com/file/d/1HtSqDHCm8PNjFB3PU6KncdFwYkctZPpd/view?usp=sharing" target="_blank" rel="noopener" style="margin-top: 16px;">
+        View full case study <span aria-hidden="true">↗</span>
+      </a>
+
+      <div class="cs-close">
+        <blockquote>
+          "The verified badge changed everything. Buyers stopped haggling over condition. My return rate dropped in the first month — I wish we had this from day one."
+        </blockquote>
+        <cite>Seller · Delhi · Refurbished iPhones</cite>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="../script.js"></script>
+</body>
+</html>
