@@ -1,6 +1,6 @@
 // Password gate
 (function() {
-  const PASSWORD = '123';
+  const PASSWORD = 'Loki_420';
   const gate = document.getElementById('gate');
   const input = document.getElementById('gate-input');
   const btn = document.getElementById('gate-btn');
