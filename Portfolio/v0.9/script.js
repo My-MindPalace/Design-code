@@ -1,36 +1,3 @@
-// Password gate
-(function() {
-  const PASSWORD = 'Loki_420';
-  const gate = document.getElementById('gate');
-  const input = document.getElementById('gate-input');
-  const btn = document.getElementById('gate-btn');
-  const hint = document.getElementById('gate-hint');
-
-  if (sessionStorage.getItem('unlocked') === '1') {
-    gate.classList.add('hidden');
-    setTimeout(() => gate.remove(), 600);
-    return;
-  }
-
-  function attempt() {
-    if (input.value === PASSWORD) {
-      sessionStorage.setItem('unlocked', '1');
-      gate.classList.add('hidden');
-      setTimeout(() => gate.remove(), 600);
-    } else {
-      input.classList.remove('wrong');
-      void input.offsetWidth;
-      input.classList.add('wrong');
-      hint.textContent = 'nope. try again 🐾';
-      input.value = '';
-      setTimeout(() => input.classList.remove('wrong'), 400);
-    }
-  }
-
-  btn.addEventListener('click', attempt);
-  input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
-})();
-
 const cards = document.querySelectorAll('.work-card');
 cards.forEach(card => {
   card.addEventListener('mousemove', (e) => {

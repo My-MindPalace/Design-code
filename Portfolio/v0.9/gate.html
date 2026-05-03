@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pranav Lokhande | Designer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/styles.css">
+  <style>
+    body { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  </style>
+</head>
+<body>
+  <div class="gate-card">
+    <img class="gate-dog" src="/images/doggo.jpg" alt="Loki">
+    <p class="gate-label">psst —</p>
+    <h2 class="gate-heading">what's the magic word?</h2>
+    <div class="gate-input-wrap">
+      <input id="gate-input" type="password" placeholder="type it..." autocomplete="off" autofocus>
+      <button id="gate-btn" aria-label="Enter">→</button>
+    </div>
+    <p class="gate-hint" id="gate-hint"></p>
+  </div>
+
+  <script>
+    const input = document.getElementById('gate-input');
+    const btn   = document.getElementById('gate-btn');
+    const hint  = document.getElementById('gate-hint');
+    const from  = new URLSearchParams(location.search).get('from') || '/';
+
+    async function attempt() {
+      const res  = await fetch('/api/unlock', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password: input.value }),
+      });
+      const data = await res.json();
+      if (data.ok) {
+        window.location.replace(from);
+      } else {
+        input.classList.remove('wrong');
+        void input.offsetWidth;
+        input.classList.add('wrong');
+        hint.textContent = 'nope. try again 🐾';
+        input.value = '';
+        setTimeout(() => input.classList.remove('wrong'), 400);
+      }
+    }
+
+    btn.addEventListener('click', attempt);
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') attempt(); });
+  </script>
+</body>
+</html>
