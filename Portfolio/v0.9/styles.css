@@ -50,13 +50,14 @@ a { color: inherit; text-decoration: none; }
 .nav-resume {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0;
   overflow: hidden;
   max-width: 32px;
   height: 32px;
   border: 1px solid var(--pill-border);
   border-radius: 999px;
-  color: var(--text-faint);
+  color: var(--text);
   font-size: 12px;
   font-weight: 500;
   padding: 0 9px;
