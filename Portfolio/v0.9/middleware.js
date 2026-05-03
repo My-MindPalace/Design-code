@@ -4,7 +4,7 @@ export const config = {
 
 export default function middleware(request) {
   const cookie = request.headers.get('cookie') || '';
-  const isAuth = cookie.split(';').some(c => c.trim() === 'auth=unlocked');
+  const isAuth = cookie.includes('auth=unlocked');
   if (isAuth) return;
 
   const from = new URL(request.url).pathname;
